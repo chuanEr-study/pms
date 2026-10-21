@@ -1,4 +1,4 @@
-# xone-tenant
+# PMS
 
 一站式账户管理服务（骨架工程）。
 
@@ -22,7 +22,7 @@ mvn spring-boot:run
 
 ```bash
 mvn clean package
-java -jar target/xone-tenant-1.0.0-SNAPSHOT.jar
+java -jar target/pms-1.0.0-SNAPSHOT.jar
 ```
 
 默认端口 `8080`。
@@ -35,7 +35,7 @@ mvn test
 
 ## 当前功能：卡片增删改查
 
-单一模块 `com.xone.tenant.card`，包结构：
+单一模块 `com.pms.card`，包结构：
 
 ```
 card/

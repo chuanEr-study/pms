@@ -1,8 +1,8 @@
-package com.xone.tenant.card.controller;
+package com.pms.card.controller;
 
-import com.xone.tenant.card.entity.CardRequest;
-import com.xone.tenant.card.entity.SpaceCard;
-import com.xone.tenant.card.service.SpaceCardService;
+import com.pms.card.entity.CardRequest;
+import com.pms.card.entity.SpaceCard;
+import com.pms.card.service.SpaceCardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

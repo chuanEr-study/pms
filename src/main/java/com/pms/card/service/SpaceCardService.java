@@ -1,8 +1,8 @@
-package com.xone.tenant.card.service;
+package com.pms.card.service;
 
-import com.xone.tenant.card.entity.CardRequest;
-import com.xone.tenant.card.entity.SpaceCard;
-import com.xone.tenant.card.repository.SpaceCardRepository;
+import com.pms.card.entity.CardRequest;
+import com.pms.card.entity.SpaceCard;
+import com.pms.card.repository.SpaceCardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

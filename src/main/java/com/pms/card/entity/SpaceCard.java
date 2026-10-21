@@ -1,4 +1,4 @@
-package com.xone.tenant.card.entity;
+package com.pms.card.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

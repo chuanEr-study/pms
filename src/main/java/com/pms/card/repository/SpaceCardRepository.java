@@ -1,6 +1,6 @@
-package com.xone.tenant.card.repository;
+package com.pms.card.repository;
 
-import com.xone.tenant.card.entity.SpaceCard;
+import com.pms.card.entity.SpaceCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

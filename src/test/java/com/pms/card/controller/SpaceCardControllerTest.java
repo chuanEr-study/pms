@@ -1,7 +1,7 @@
-package com.xone.tenant.card.controller;
+package com.pms.card.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xone.tenant.card.entity.SpaceCard;
+import com.pms.card.entity.SpaceCard;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

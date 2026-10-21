@@ -1,4 +1,4 @@
-package com.xone.tenant.card.entity;
+package com.pms.card.entity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

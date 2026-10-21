@@ -1,4 +1,4 @@
-package com.xone.tenant.common;
+package com.pms.common;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

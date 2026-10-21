@@ -11,13 +11,13 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.xone</groupId>
-  <artifactId>xone-tenant</artifactId>
+  <groupId>com.pms</groupId>
+  <artifactId>pms</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>xone-tenant</name>
-  <description>xone-tenant：一站式账户管理服务（骨架工程）</description>
+  <name>PMS</name>
+  <description>PMS：一站式账户管理服务（骨架工程）</description>
 
   <properties>
     <java.version>1.8</java.version>
