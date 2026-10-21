@@ -70,6 +70,79 @@ card/
 | created_at | datetime | 创建时间 |
 | updated_at | datetime | 更新时间 |
 
+## 人员离职通知
+
+新增 `com.pms.personnel` 模块，接收 OA 系统离职通知并把人员状态置为「离职」。
+
+### 接口
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| POST | `/api/personnel/departure` | 接收 OA 离职通知，人员状态更新为 DEPARTED |
+
+鉴权（假设：OA 共享静态应用凭证），由 `OaAuthInterceptor` 在参数绑定前完成：
+
+- `X-App-Key`：应用标识
+- `X-App-Secret`：应用密钥
+
+凭证通过环境变量 `OA_APP_KEY` / `OA_APP_SECRET` 注入（必填，为空启动 fail-fast），比较采用 `MessageDigest.isEqual` 恒时比较。
+
+请求体：
+
+```json
+{
+  "eventId": "EVT-20261021-000001",
+  "employeeId": "E10086",
+  "tenantId": "T001",
+  "departureTime": "2026-10-21 18:00:00",
+  "reason": "个人原因",
+  "operator": "admin"
+}
+```
+
+响应（统一结构 `code` / `message` / `data`）：
+
+```json
+{ "code": "0", "message": "ok", "data": { "employeeId": "E10086", "status": "DEPARTED" } }
+```
+
+状态码与业务码：
+
+| HTTP | code | 含义 | 是否可重试 |
+|---|---|---|---|
+| 200 | 0 | 成功（含幂等重复事件） | — |
+| 400 | 40001 | 参数校验失败 | 否 |
+| 400 | 40002 | 事件与人员不匹配 | 否 |
+| 401 | 40101 | 应用凭证校验失败 | 否 |
+| 404 | 40401 | 人员不存在 | 否 |
+| 500 | 50001 | 系统内部错误 | 是 |
+
+### 数据模型
+
+`personnel` 表（`(tenant_id, employee_id)` 唯一索引）：
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| id | bigint | 主键，自增 |
+| tenant_id | varchar(64) | 租户标识 |
+| employee_id | varchar(64) | 人员唯一标识（OA 工号） |
+| name | varchar(128) | 姓名 |
+| status | varchar(32) | 状态：ACTIVE / DEPARTED |
+| departure_time | datetime | 离职生效时间 |
+| created_at / updated_at | datetime | 创建/更新时间 |
+
+`departure_event` 表（`event_id` 唯一索引，幂等键）：
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| id | bigint | 主键，自增 |
+| event_id | varchar(128) | OA 离职事件唯一 ID |
+| tenant_id / employee_id | varchar(64) | 人员定位 |
+| reason / operator | varchar | 离职原因 / 操作人 |
+| created_at | datetime | 处理时间 |
+
+生产 MySQL 建表与唯一索引脚本见 `src/main/resources/db/migration/V1__personnel_departure.sql`（H2 开发/测试环境由 JPA `ddl-auto=update` 自动建表）。
+
 ## 调用示例
 
 ```bash

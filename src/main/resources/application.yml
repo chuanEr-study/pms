@@ -22,6 +22,12 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
+# OA 应用凭证（假设：共享静态凭证；必填、启动 fail-fast，由环境变量/配置中心注入）
+pms:
+  oa:
+    app-key: ${OA_APP_KEY:}
+    app-secret: ${OA_APP_SECRET:}
+
 logging:
   level:
     com.pms: INFO
